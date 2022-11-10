@@ -10,6 +10,8 @@
 * 2010-2015: Abitur an der General National University, kurz GNU
 * 2015-2017: Fortbildung für Fenster und Früchtebetriebssysteme bei der Firma Große Härte mit Birnen
 * 2017-2022: Fragwürdige Lebenseintscheidungen
+* 2022-    : Die Zukunft ist ungewiss
+
 
 ![Text](https://cdn.pixabay.com/photo/2014/05/27/23/32/matrix-356024_1280.jpg)
 
