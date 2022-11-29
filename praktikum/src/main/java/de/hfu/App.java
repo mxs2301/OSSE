@@ -17,7 +17,7 @@ public class App
     public static int greeter(){
         System.out.println("Good bye");
         /**
-         * @return 1;
+         * @return true;
          */
         return 1;
     }

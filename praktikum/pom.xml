@@ -151,7 +151,7 @@ plugin>
 <id>central</id>
 <name>central maven repo</name>
 <url>
-https://repo.informatik.hs-furtwangen.de/repository/central/
+https://repo.cloud.hs-furtwangen.de/repository/central/
 </url>
 </repository>
 </repositories>
