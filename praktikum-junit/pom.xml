@@ -1,0 +1,230 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.hfu</groupId>
+    <artifactId>praktikum-junit</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>praktikum-junit</name>
+
+    <!--======================================================================
+      Mit dem properties-Element können einige Werte definiert werden,
+      die in dieser pom.xml als Variablen verwendet werden können.
+    ======================================================================= -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+
+        <junit.version>5.9.1</junit.version>
+        <jacoco.version>0.8.8</jacoco.version>
+        <easymock.version>5.0.1</easymock.version>
+        <hamcrest.version>2.2</hamcrest.version>
+        <maven.surefire.version>2.22.2</maven.surefire.version>
+    </properties>
+
+
+    <!--======================================================================
+      Mit dem dependencies-Element können Bibliotheken definiert werden,
+      die bei der Erstellung des Projekts heruntergeladen und verwendet werden
+      sollen.
+    ======================================================================= -->
+    <dependencies>
+        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+          Bibliothek für die Unit-Tests
+        :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+          Bibliothek für das Erstellen von Mock-Objekten (werden verwendet in
+          Unit-Tests)
+                  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+        <!--dependency>
+          <groupId>org.easymock</groupId>
+          <artifactId>easymock</artifactId>
+          <version>${easymock.version}</version>
+          <scope>test</scope>
+        </dependency-->
+
+        <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+          Bibliothek für Assert-Matcher (werden verwendet in Unit-Tests)
+                  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+        <!--dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <version>${hamcrest.version}</version>
+            <scope>test</scope>
+        </dependency-->
+
+    </dependencies>
+
+    <!--======================================================================
+      Mit dem reporting-Element können Plugins definiert werden,
+      die bei der Erstellung einer Projekt-Webseite Inhalte beitragen.
+      Die Projekt-Webseite ist unabhängig vom Bauen des Projekt-Pakets
+      und muss mit "mvn site" angestoßen werden. Die fertige Projekt-
+      Webseite kann dann unter target/site mit einem Webbrowser angeschaut
+      werden.
+    ======================================================================= -->
+    <reporting>
+        <plugins>
+            <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+              Dies ist das Standard-Reporting-Plugin, welches Daten
+              aus dieser Konfigurationsdatei verwendet, um diese auf
+              der Projekt-Webseite darzustellen.
+            :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+            <plugin>
+              <artifactId>maven-project-info-reports-plugin</artifactId>
+            </plugin>
+
+            <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+              Das surefire-Reporting-Plugin erstellt Webseiten aus den Ergebnissen
+              von Unit-Tests und bindet diese in der Projekt-Webseite ein.
+            :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+            <plugin>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+            </plugin>
+
+            <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+              Das jacoco-Reporting-Plugin stellt die Code-Coverage der Unit-Tests dar
+              und bindet diese in der Projekt-Webseite ein.
+                          :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+            <!--plugin>
+              <groupId>org.jacoco</groupId>
+              <artifactId>jacoco-maven-plugin</artifactId>
+              <version>${jacoco.version}</version>
+            </plugin-->
+
+        </plugins>
+    </reporting>
+
+    <!--======================================================================
+      Mit dem build-Element können Plugins definiert werden, die die Standard-
+      Aktionen von Maven um eigene Aktionen erweitern. Kompilieren, Testen
+      und Paketieren brauchen Sie hier nicht mehr zusätzlich anzugeben.
+    ======================================================================= -->
+    <build>
+        <plugins>
+
+            <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+              Das maven-jar-Plugin erstellt aus Ihrem Projekt eine Jar-Bibliothek.
+              Um die Klasse mit der main-Methode zu definieren, müssen Sie unten bei
+              mainClass den Namen der Klasse mit Package aber ohne Dateiendung
+              angeben.
+                          :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>de.hfu.App</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+              Das jacoco-Plugin führt die Code-Coverage-Analyse während der Unit-Tests
+              durch.
+                          :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+            <!--plugin>
+              <groupId>org.jacoco</groupId>
+              <artifactId>jacoco-maven-plugin</artifactId>
+              <version>${jacoco.version}</version>
+              <executions>
+                <execution>
+                  <id>default-prepare-agent</id>
+                  <goals>
+                    <goal>prepare-agent</goal>
+                  </goals>
+                </execution>
+                <execution>
+                  <id>default-report</id>
+                  <goals>
+                    <goal>report</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin-->
+        </plugins>
+
+        <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+          Das pluginManagement-Element definiert die zu verwendenden Versionen
+          der Standard-Maven-Plugins. Nicht zwingend notwendig, aber so bekommen
+          wir eine definierte Build-Umgebung.
+        :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.10.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-report-plugin</artifactId>
+                    <version>${maven.surefire.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.3.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.12.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>3.4.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <!--======================================================================
+      Mit dem dependencyManagement-Element können wir festlegen, welche
+      Versionen Maven für Abhängigkeiten verwendet. Erspart uns Schreibarbeit,
+      da wir die Versionen oben im dependencies-Element nicht mehr angeben
+      müssen.
+    ======================================================================= -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!--======================================================================
+      Mit dem repositories-Element können wir festlegen, woher Maven die
+      Bibliotheken lädt. Wir verwenden hier ein Repository an der Hochschule,
+      welches die Daten des Standard-Repositories zwischenspeichert und
+      schneller zurückliefern kann.
+    ======================================================================= -->
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>central maven repo</name>
+            <url>https://repo.cloud.hs-furtwangen.de/repository/central/</url>
+        </repository>
+    </repositories>
+</project>
