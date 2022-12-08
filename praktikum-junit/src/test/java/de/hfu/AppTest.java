@@ -2,25 +2,31 @@ package de.hfu;
 
 import org.junit.jupiter.api.*;
 
-import org.testng.annotations.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 import de.hfu.unit.*;
 
 /**
  * Beispiele für Unit-Tests
  */
 @DisplayName("Test der Klasse App")
-public class AppTest 
-{
+public class  AppTest {
 
     /**
      * Wird einmal vor allen Tests dieser Klasse aufgerufen
      */
+
+
+    /**
+     * Wird niemals erfolgreich sein
+     * Deshalb besser deaktiviert
+     */
+
+
+    /*
     @BeforeAll
     static void initAll() {
-    }
+    }*/
 
     /**
      * Wird jeweils vor den Tests dieser Klasse aufgerufen
@@ -38,18 +44,6 @@ public class AppTest
     }
 
     /**
-     * Wird niemals erfolgreich sein
-     * Deshalb besser deaktiviert
-     */
-
-    /*
-    @Test
-    @Disabled("kein sinnvoller Test, deshalb deaktiviert")
-    void failingTest() {
-        fail("dieser Test schlägt fehl");
-    }*/
-
-    /**
      * Wird jeweils nach den Tests dieser Klasse aufgerufen
      */
     @AfterEach
@@ -64,37 +58,43 @@ public class AppTest
     }
 
     @Test
-    public void testeMonat(){
+    public void testeMonat() {
         assertTrue(Util.istErstesHalbjahr(6));
-        assertTrue(Util.istErstesHalbjahr(7));
-        assertTrue(!Util.istErstesHalbjahr(9));
+        assertFalse(Util.istErstesHalbjahr(7));
+        assertFalse(Util.istErstesHalbjahr(9));
         assertFalse(Util.istErstesHalbjahr(10));
     }
 
     @Test
-    public void testeExceptions(){
-        try{
-            assertThrows(IllegalArgumentException.class, () -> {Util.istErstesHalbjahr(13);});
-        }catch (Exception aa){
-            System.out.println("Exception wurde abgefangen");
-            System.out.println(aa.getMessage());
+    public void testeExceptions() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Util.istErstesHalbjahr(13);
+        });
+        System.out.println("Exception wurde abgefangen");
+    }
+
+    @Test
+    public void Lui() {
+        try {
+            Util.istErstesHalbjahr(0);
+            fail("Luis ist schwanger");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Exception wurde geworfen");
         }
     }
 
     @Test
-    public void testeQueue(){
+    public void testeQueue() {
         Queue schlange = new Queue(3);
 
-        try{
-            assertThrows(IllegalStateException.class, () -> {schlange.dequeue();});
-        }catch (IllegalStateException e){
-            System.out.println(e.getMessage());
-        }
+        assertThrows(IllegalStateException.class, () -> {
+            schlange.dequeue();
+        });
 
         schlange.enqueue(4);
         assertNotNull(schlange);
         assertEquals(4, schlange.dequeue());
-
+        assertNotNull(schlange);
     }
 
 }

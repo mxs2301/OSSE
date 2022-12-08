@@ -7,8 +7,13 @@ import de.hfu.unit.*;
  */
 public class App {
 
+    public static String getHello(){
+        return "Hello";
+    }
+
     public static void main(String[] args) {
         System.out.println("OSSE Praktikum Projekt");
-        System.out.println("Bye...");
+        System.out.println("Stuff");
+        System.out.println("Was zum fick");
     }
 }

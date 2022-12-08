@@ -39,33 +39,27 @@
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
-        </dependency>
 
         <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
           Bibliothek für das Erstellen von Mock-Objekten (werden verwendet in
           Unit-Tests)
                   :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-        <!--dependency>
+        <dependency>
           <groupId>org.easymock</groupId>
           <artifactId>easymock</artifactId>
           <version>${easymock.version}</version>
           <scope>test</scope>
-        </dependency-->
+        </dependency>
 
         <!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
           Bibliothek für Assert-Matcher (werden verwendet in Unit-Tests)
                   :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-        <!--dependency>
+        <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-library</artifactId>
             <version>${hamcrest.version}</version>
             <scope>test</scope>
-        </dependency-->
+        </dependency>
 
     </dependencies>
 
@@ -85,7 +79,7 @@
               der Projekt-Webseite darzustellen.
             :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
             <plugin>
-              <artifactId>maven-project-info-reports-plugin</artifactId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
             </plugin>
 
             <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -100,11 +94,11 @@
               Das jacoco-Reporting-Plugin stellt die Code-Coverage der Unit-Tests dar
               und bindet diese in der Projekt-Webseite ein.
                           :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-            <!--plugin>
+            <plugin>
               <groupId>org.jacoco</groupId>
               <artifactId>jacoco-maven-plugin</artifactId>
               <version>${jacoco.version}</version>
-            </plugin-->
+            </plugin>
 
         </plugins>
     </reporting>
@@ -130,7 +124,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>de.hfu.App</mainClass>
+                            <mainClass>de.hfu.IHREHAUPTKLASSE</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -140,7 +134,7 @@
               Das jacoco-Plugin führt die Code-Coverage-Analyse während der Unit-Tests
               durch.
                           :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-            <!--plugin>
+            <plugin>
               <groupId>org.jacoco</groupId>
               <artifactId>jacoco-maven-plugin</artifactId>
               <version>${jacoco.version}</version>
@@ -158,7 +152,7 @@
                   </goals>
                 </execution>
               </executions>
-            </plugin-->
+            </plugin>
         </plugins>
 
         <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
